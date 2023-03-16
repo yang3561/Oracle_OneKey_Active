@@ -2,7 +2,7 @@
 
 
 
-utilization=14
+utilization=10
 
 
 endless_loop()
