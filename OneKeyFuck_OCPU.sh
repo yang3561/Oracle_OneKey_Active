@@ -40,7 +40,7 @@ Cores=$(cat /proc/cpuinfo| grep "processor"| wc -l )
   echo -e "${green}==========================${plain} "
 
  echo "等待5S"
-sleep 5
+sleep 0
    if [ -f /root/Fuck_OCPU.sh ]; then
  echo "file found...开始执行 吃掉CPU"
   bash Fuck_OCPU.sh ${Cores}
