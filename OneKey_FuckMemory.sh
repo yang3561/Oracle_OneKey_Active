@@ -56,20 +56,20 @@ used_mem=$(free | awk '/Mem:/ {print $3}')
 used_percent=$(awk "BEGIN {printf \"%.2f\", $used_mem/$total_mem*100}")
 
 # 判断内存占用率是否小于10%
-if [ $(echo "$used_percent < 10" | bc) -eq 1 ]; then
-    # 计算内存占用距离15%差多少MB，保留整数位
-    mem_diff=$(awk "BEGIN {print int(($total_mem*0.15-$used_mem)/1024)}")
-    echo "当前内存占用率为${used_percent}%，距离15%还差${mem_diff}MB"
+if [ $(echo "$used_percent < 20" | bc) -eq 1 ]; then
+    # 计算内存占用距离20%差多少MB，保留整数位
+    mem_diff=$(awk "BEGIN {print int(($total_mem*0.2-$used_mem)/1024)}")
+    echo "当前内存占用率为${used_percent}%，距离20%还差${mem_diff}MB"
     FullM="${mem_diff}M"
         if [ -f /root/memory_usage.sh ]; then
              echo "file found...开始执行 吃掉内存"
-                cd /root && wget -qO memory_usage.sh https://raw.githubusercontent.com/Mrmineduce21/Oracle_OneKey_Active/main/memory_usage.sh && chmod +x memory_usage.sh && bash memory_usage.sh consume ${FullM}
+                cd /root && wget -qO memory_usage.sh https://raw.githubusercontent.com/yang3561/Oracle_OneKey_Active/main/memory_usage.sh && chmod +x memory_usage.sh && bash memory_usage.sh consume ${FullM}
         else
                 echo "no such file!-开始下载"
-                cd /root && wget -qO memory_usage.sh https://raw.githubusercontent.com/Mrmineduce21/Oracle_OneKey_Active/main/memory_usage.sh && chmod +x memory_usage.sh && bash memory_usage.sh consume ${FullM}
+                cd /root && wget -qO memory_usage.sh https://raw.githubusercontent.com/yang3561/Oracle_OneKey_Active/main/memory_usage.sh && chmod +x memory_usage.sh && bash memory_usage.sh consume ${FullM}
         fi
 else
-    echo -e "${green}内存占用达到15%${plain}"
+    echo -e "${green}内存占用达到20%${plain}"
     exit 1
 fi
 
